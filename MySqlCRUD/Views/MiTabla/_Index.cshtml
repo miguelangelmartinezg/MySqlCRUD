@@ -1,0 +1,58 @@
+﻿@model List<MySqlCRUD.Models.ViewModels.ListMitablaViewModel>
+
+@using MySqlCRUD.Helpers
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<br />
+
+
+<div class="pull-right">
+    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Nuvo Registro", "Nuevo", "MiTabla", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mis Datos</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Correo</td>
+                                <td>
+                                    <div class="pull-right">
+                                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", "Edit", "Edit", "Addresses", routeValues: new { id = item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-default" })
+                                        &nbsp;
+                                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Delete", "Delete", "Addresses", routeValues: new { id = item.Id }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger" })
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

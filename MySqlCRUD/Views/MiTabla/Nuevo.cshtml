@@ -1,0 +1,41 @@
+﻿@model MySqlCRUD.Models.ViewModels.MitablaViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <!--<form asp-action="Nuevo" enctype="multipart/form-data">-->
+    @using (Html.BeginForm("Nuevo", "MiTabla", FormMethod.Post))
+    {
+        <!--<div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+
+
+        <!--<partial name="_MiTablaPartialView" />-->
+
+        <div>
+            @Html.Partial("_MiTablaPartialView")
+        </div>
+        <div>
+            @Html.Partial("_MisBotones")
+            <a href="~/Mitabla/Index" class="btn btn-primary">Volver</a>
+
+            
+        </div>
+
+        <!--<div class="row" style="text-align:left; padding:65px">
+            <input value="Guardar" class="btn btn-primary" type="submit" />
+            <input value="Editar" class="btn btn-primary" type="submit" />
+            <a href="~/Mitabla/Index" class="btn btn-primary">Volver</a>
+        </div>-->
+    }
+    <!--<form name="Nuevo" method="post" action="Nuevo">
+    </form>-->
+</div>
+
+
+
+
+
+

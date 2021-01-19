@@ -1,0 +1,21 @@
+﻿@using MySqlCRUD.Models.ViewModels
+@using MySqlCRUD.Models
+@model PaginadorGenerico<mitabla>
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*CÓDIGO PARA EL FILTRO DE BÚSQUEDA*@
+<div class="text-right form-inline">
+    <form method="get" action=@Url.Action("Index", "Customers" )>
+        <div class="form-group">
+            @Html.TextBox("buscar", null, new
+            {
+                placeholder = "texto de búsqueda",
+                                    @class = "form-control"
+            })
+        </div>
+        <button class="btn btn-default" type="submit">Buscar</button>
+    </form>
+</div>
