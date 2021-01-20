@@ -1,0 +1,43 @@
+﻿
+@using MySqlCRUD.Enums
+@model MySqlCRUD.Models.ViewModels.HijosModels
+
+<p>
+    
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font:bold 12px">DATOS PERSONALES</div>
+
+        <div class="text-left form-inline" style="padding: 25px">
+            @Html.LabelFor(d => d.Nombre)
+            @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.Apellidos)
+            @Html.TextBoxFor(d => d.Apellidos, "", new { @class = "form-control" }) <br /> <br />
+
+            @Html.LabelFor(d => d.Direccion)
+            @Html.TextBoxFor(d => d.Direccion, "", new { @class = "form-control" }) <br /> <br />
+
+            @Html.LabelFor(d => d.Fechanac) <br />
+            @Html.TextBoxFor(d => d.Fechanac, "", new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.Edad)
+            @Html.TextBoxFor(d => d.Edad, "", new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.Sexo)
+            @Html.DropDownListFor(d => d.Sexo, new SelectList(Enum.GetValues(typeof(EnumSexo))),
+            "Seleccione")
+        </div>
+        <div class="text-left form-inline" style="padding: 25px">
+           
+
+           
+
+        </div>
+
+        <br />
+        <br />
+    </div>
+
+      
+</p>

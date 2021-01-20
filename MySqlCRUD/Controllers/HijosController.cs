@@ -80,18 +80,38 @@ namespace MySqlCRUD.Controllers
 
         }
 
-        public ActionResult Grabar()
+        public ActionResult Nuevo()
         {
             return View();
         }
-        public ActionResult Grabar(HijosModels model)
+
+        [HttpPost]
+        public ActionResult Nuevo(HijosModels model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    using (crudEntities1 DB = new crudEntities1())
+                    {
+                        var oTabla = new hijos();
+                        oTabla.apellidos = model.Apellidos;
+                        oTabla.direccion = model.Direccion;
+                        oTabla.edad = model.Edad;
+                        //oTabla.idhijos = model.Idhijos;
+                        oTabla.idmitabla = model.Idmitabla;
+                        oTabla.nombre = model.Nombre;
+                        oTabla.sexo = model.Sexo.ToString();
+                        oTabla.idmitabla = 4;
+                        oTabla.fechaNac = DateTime.Today;
 
+                        DB.hijos.Add(oTabla);
+                        DB.SaveChanges();
+
+                        return Redirect("~/Hijos/Index");
+                    }
                 }
+                return View(model);
             }
             catch (Exception)
             {
