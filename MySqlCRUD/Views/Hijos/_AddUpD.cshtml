@@ -1,6 +1,6 @@
 ﻿
 @using MySqlCRUD.Enums
-@model MySqlCRUD.Models.ViewModels.HijosModels
+@model MySqlCRUD.Models.ViewModels.HijosViewModels
 <div class="col-md-12 panel panel-default">
 
     <div class="text-left form-inline" style="padding: 5px">
@@ -21,6 +21,11 @@
         @Html.LabelFor(d => d.Sexo)
         @Html.DropDownListFor(d => d.Sexo, new SelectList(Enum.GetValues(typeof(EnumSexo))),
         "Seleccione")
+
+        @Html.LabelFor(d => d.Padres)
+        @Html.DropDownListFor(d => d.Padres, new SelectList(Model.Padres)),
+        "Seleccione")
+
     </div>
 
     <br />
