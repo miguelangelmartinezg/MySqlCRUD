@@ -1,0 +1,147 @@
+﻿@using MySqlCRUD.Models
+@model MySqlCRUD.Models.ViewModels.PaginadorGenerico<mitabla>
+@{
+    ViewBag.Title = "MI DATOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+@*CÓDIGO PARA EL FILTRO DE BÚSQUEDA*@
+
+<br />
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<br />
+<p>
+    
+
+    <div class="text-right form-inline">
+       
+        <form method="get" action=@Url.Action("IndexBusqueda", "MiTabla" )>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font:bold 12px"><b>Busqueda Rapida </b></div>
+               
+                    
+                
+                <div class="form-group" style="padding: 5px">
+                    @Html.Label("Buscar:")
+                    @Html.TextBox("buscar", null, new
+                    {
+                        placeholder = "Nombre, Email",
+                                            @class = "form-control"
+                    })
+                </div>
+                <button class="btn btn-info " type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+           
+        </form>
+    </div>
+</p>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a text-align:"left" href="~/MiTabla/Nuevo" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nuevo Registro</a>
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Resultado)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.nombre</td>
+                                <td>@item.correo</td>
+                                <td>
+                                    <a class="btn btn-warning" href="~/Mitabla/Edit/@item.id"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <button data-id="@item.id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+@if (Model.Resultado.Count() > 0)
+{
+    <span>
+        <strong>@Model.TotalRegistros</strong> registros encontrados
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+    <span>
+        Página <strong>@(Model.PaginaActual)</strong> de
+        <strong>@Model.TotalPaginas</strong>
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+}
+else
+{
+    <span>No hay resultados para esta búsqueda</span>
+    <span>&nbsp;|&nbsp;</span>
+}
+
+@if (Model.PaginaActual > 1)
+{
+    @Html.ActionLink("<<", "IndexBusqueda", new { pagina = 1, buscar = Model.BusquedaActual },
+                        new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink("Anterior", "IndexBusqueda", new
+    {
+        pagina = Model.PaginaActual - 1,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("<<", "IndexBusqueda", new
+    {
+        pagina = 1,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink("Anterior", "IndexBusqueda", new
+    {
+        pagina = 1,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default disabled" })
+}
+
+<span></span>
+
+@if (Model.PaginaActual < Model.TotalPaginas)
+{
+    @Html.ActionLink("Siguiente", "IndexBusqueda", new
+    {
+        pagina = Model.PaginaActual + 1,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink(">>", "IndexBusqueda", new
+    {
+        pagina = Model.TotalPaginas,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("Siguiente", "IndexBusqueda", new
+    {
+        pagina = Model.TotalPaginas - 1,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink(">>", "IndexBusqueda", new
+    {
+        pagina = Model.TotalPaginas,buscar = Model.BusquedaActual
+    },new { @class = "btn btn-sm btn-default disabled" })
+}
+
+

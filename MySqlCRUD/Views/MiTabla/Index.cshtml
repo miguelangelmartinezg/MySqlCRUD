@@ -1,0 +1,89 @@
+﻿@model List<MySqlCRUD.Models.ViewModels.ListMitablaViewModel>
+
+@using MySqlCRUD.Helpers
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+@{
+    ViewBag.Title = "Mis Datos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<br />
+
+
+<p>
+    <a href="~/MiTabla/Nuevo" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Nuevo Registro</a>
+</p>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mis Datos</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Correo</td>
+                                <td>
+                                    <a class="btn btn-warning" href="~/Mitabla/Edit/@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <!--<a class="btn btn-danger deleteItem" data-id="@item.Id" data-toggle="modal" data-target="#advertenciaBorrar"><i class="glyphicon glyphicon-trash"></i></a>-->
+                                    <!--<a class="btn btn-danger deleteItem" data-toggle="modal" data-target="#advertenciaBorrar" href="~/Mitabla/Index/@item.Id">Eliminar</a>-->
+                                    <!--<a href="#" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">Eliminar registro</a>-->
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<@Html.Partial("_DeleteDialog") />
+
+@section Scripts {
+
+    @{Html.RenderPartial("_ValidationScriptsPartial");}
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="/Scripts/deleteDialog.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/deleteDialog")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+
+            // Delete item
+            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/MiTabla/Borrar/', false);
+
+        });
+    </script>
+}

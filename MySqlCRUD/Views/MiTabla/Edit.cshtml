@@ -1,0 +1,26 @@
+﻿@model MySqlCRUD.Models.ViewModels.MitablaViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Titl</h2>
+
+<div class="row">
+
+    @using (Html.BeginForm("Edit", "MiTabla", FormMethod.Post))
+    {
+        @Html.HiddenFor(d => d.Id)
+        <div>
+            @Html.Partial("_MiTablaPartialView")
+        </div>
+        <div>
+            @Html.Partial("_MisBotones")
+        </div>
+
+
+
+
+    }
+
+</div>
+
