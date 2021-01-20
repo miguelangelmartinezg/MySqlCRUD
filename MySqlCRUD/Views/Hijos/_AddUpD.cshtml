@@ -1,0 +1,34 @@
+﻿
+@using MySqlCRUD.Enums
+@model MySqlCRUD.Models.ViewModels.HijosModels
+<div class="col-md-12 panel panel-default">
+
+    <div class="text-left form-inline" style="padding: 5px">
+        @Html.LabelFor(d => d.Nombre)
+        @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+
+        @Html.LabelFor(d => d.Apellidos)
+        @Html.TextBoxFor(d => d.Apellidos, "Escriba el Nombre", new { @class = "form-control" }) <br />
+    </div>
+    <div>
+        @Html.LabelFor(d => d.Direccion)
+        @Html.TextAreaFor(d => d.Direccion)
+    </div>
+    <div class="text-left form-inline">
+        @Html.LabelFor(d => d.Edad)
+        @Html.TextBoxFor(d => d.Edad)
+
+        @Html.LabelFor(d => d.Sexo)
+        @Html.DropDownListFor(d => d.Sexo, new SelectList(Enum.GetValues(typeof(EnumSexo))),
+        "Seleccione")
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <div>
+        <a href="~/Mitabla/Index" class="btn btn-primary">Volver</a>
+        <input value="Nuevo" class="btn btn-primary" type="submit" />
+    </div>
+    
+</div>

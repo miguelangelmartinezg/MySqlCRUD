@@ -182,9 +182,11 @@
     <Compile Include="Controllers\HijosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MiTablaController.cs" />
+    <Compile Include="Enums\EnumSexo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Convert_Model_ViewModel.cs" />
     <Compile Include="Helpers\LlenaCombos.cs" />
     <Compile Include="Helpers\MyHelpers.cs" />
     <Compile Include="Models\DB.Context.cs">
@@ -316,6 +318,8 @@
     <Content Include="Views\MiTabla\_BusquedaIndex.cshtml" />
     <Content Include="Views\MiTabla\IndexBusqueda.cshtml" />
     <Content Include="Views\Hijos\Index.cshtml" />
+    <Content Include="Views\Hijos\_AddUpD.cshtml" />
+    <Content Include="Views\Hijos\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

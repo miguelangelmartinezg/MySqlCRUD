@@ -12,11 +12,11 @@
           <Property Name="idhijos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="apellidos" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="fechaNac" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fechaNac" Type="datetime" Precision="0" />
           <Property Name="idmitabla" Type="int" Nullable="false" />
           <Property Name="direccion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="edad" Type="int" Nullable="false" />
-          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="mitabla">
           <Key>

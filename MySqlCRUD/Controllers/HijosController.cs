@@ -1,4 +1,5 @@
-﻿using MySqlCRUD.Models;
+﻿using MySqlCRUD.Helpers;
+using MySqlCRUD.Models;
 using MySqlCRUD.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MySqlCRUD.Controllers
         private readonly int _RegistrosPorPagina = 10;
         private List<hijos> _Datos;
         private PaginadorGenerico<hijos> _PaginadorDatos;
+        LlenaCombos oLlenaCombos = new LlenaCombos();
         // GET: Hijos
         public ActionResult Index(string buscar, int pagina = 1)
         {
@@ -80,17 +82,44 @@ namespace MySqlCRUD.Controllers
 
         }
 
-        public ActionResult Grabar()
+        public ActionResult Nuevo()
         {
-            return View();
+            HijosViewModels modelo = new HijosViewModels
+            {
+                Padres = oLlenaCombos.GetComboPadres()
+                
+            };
+
+
+            return View(modelo);
         }
-        public ActionResult Grabar(HijosModels model)
+
+        [HttpPost]
+        public ActionResult Nuevo(HijosModels model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    using (crudEntities1 db = new crudEntities1())
+                    {
+                        var oHijo = new hijos();
+                        oHijo.nombre = model.Nombre;
+                        oHijo.apellidos = model.Apellidos;
+                        oHijo.direccion = model.Direccion;
+                        oHijo.edad = model.Edad;
+                        oHijo.fechaNac = model.Fechanac;
+                        oHijo.idhijos = model.Idhijos;
+                        oHijo.idmitabla = model.Idmitabla;
+                        oHijo.sexo = model.Sexo;
 
+                        db.hijos.Add(oHijo);
+                        db.SaveChanges();
+
+                        return Redirect("~/Hijos/Nuevo");
+
+
+                    }
                 }
             }
             catch (Exception)

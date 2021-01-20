@@ -1,9 +1,10 @@
 ﻿@model MySqlCRUD.Models.ViewModels.MitablaViewModel
-<div class="col-md-12">
+<div class="col-md-12 panel panel-default">
 
-    <div>
+    <div class="text-right form-inline">
         @Html.LabelFor(d => d.Nombre)
         @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+
     </div>
     <div>
         @Html.LabelFor(d => d.Correo)
