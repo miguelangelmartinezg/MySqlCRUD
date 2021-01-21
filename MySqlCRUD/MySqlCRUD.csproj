@@ -320,6 +320,7 @@
     <Content Include="Views\Hijos\Index.cshtml" />
     <Content Include="Views\Hijos\_AddUpD.cshtml" />
     <Content Include="Views\Hijos\Nuevo.cshtml" />
+    <Content Include="Views\Hijos\_NewPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

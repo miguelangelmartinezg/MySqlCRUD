@@ -86,7 +86,7 @@ namespace MySqlCRUD.Controllers
         {
             HijosViewModels modelo = new HijosViewModels
             {
-                Padres = oLlenaCombos.GetComboPadres()
+                //Padres = oLlenaCombos.GetComboPadres()
                 
             };
 

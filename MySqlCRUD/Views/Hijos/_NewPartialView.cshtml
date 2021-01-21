@@ -1,0 +1,20 @@
+﻿
+@using MySqlCRUD.Enums
+@model MySqlCRUD.Models.ViewModels.HijosViewModels
+
+
+@Styles.Render("~/Content/MisEstilos.css")
+<body>
+    <h1>Formulario de Registro</h1>
+    <form action ="Nuevo" method="post" class="contenedor">
+        <div class="contenedor-inputs">
+            <input type="text" name="Nombre" placeholder="Nombre" class="input-48" />
+            <input type="text" name="Apellido" placeholder="Apellidos" class="input-48" />
+            <input type="text" name="Direccion" placeholder="Direccion" class="input-100" />
+            <input type="datetime" name="Fechanac" placeholder="Fecha Nacimiento" class="linea-1" />
+            <input type="number" name="Edad" placeholder="Edad" class="linea-1" />
+            <select name="Sexo" class="input-48"><option>Masculino</option><option>Femenino</option></select>
+
+        </div>
+    </form>
+</body>

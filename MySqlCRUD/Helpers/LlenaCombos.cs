@@ -10,7 +10,7 @@ namespace MySqlCRUD.Helpers
 {
     public class LlenaCombos
     {
-
+        /*
         public IEnumerable<SelectListItem> GetComboPadres()
         {
             List<SelectListItem> oList = null;
@@ -29,6 +29,8 @@ namespace MySqlCRUD.Helpers
                 //    Text = "Seleccione un Registro",
                 //    Value = "0"
                 //});
+
+
                 List <PadresViewModel> oPadres = null;
                 oPadres = (from d in DB.mitabla
                          select new PadresViewModel
@@ -58,5 +60,6 @@ namespace MySqlCRUD.Helpers
 
             return oList;
         }
+    */
     }
 }

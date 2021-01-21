@@ -1,3 +1,41 @@
-﻿.Guardar {
+﻿* {
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-family: sans-serif;
+    background: #0094ff;
+}
+h1{
+    color:#000000;
+    text-align:center;
+    }
+
+.contenedor{
+    width: 95%;
+    max-height: 500px;
+    margin: auto;
+    background: #808080    
     
+}
+
+.contenedor-inputs{
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+input{
+    margin-bottom: 15px;
+    padding: 15px;
+    align-content: center;}
+.input-48{
+    width:48%;
+}
+.input-100 {
+    width: 100%;
+}
+.linea-1 {
+    width: 48%;
 }
