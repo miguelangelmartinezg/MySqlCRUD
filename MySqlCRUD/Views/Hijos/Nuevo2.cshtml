@@ -1,11 +1,9 @@
 ﻿@model MySqlCRUD.Models.ViewModels.HijosViewModels
 @{
-    ViewBag.Title = "Nuevo Registro";
+    ViewBag.Title = "Nuevo2";
 }
-
-@*<h2>@ViewBag.Title</h2>*@
-<link rel="stylesheet" href="MisEstilos.css" />
 @Styles.Render("~/Content/EstiloForm.css")
+<h2>Nuevo2</h2>
 <body>
     <main>
         <section>
@@ -20,7 +18,7 @@
                 </div>
                 <div class="Campos">
                     <label>Apellidos</label>
-                    <input type="text" name="Apellidos" class="input-48" />
+                    <input type="text" name="Apellido" class="input-48" />
                 </div>
                 <div class="Campos">
                     <label>Dirección</label>
@@ -39,17 +37,12 @@
                     <label>Sexo</label>
                     <select name="Sexo"><option>Masculino</option><option>Femenino</option></select>
                 </div>
-
-                <div class="Campos">
-                    <label>Padres</label>
-                    @Html.DropDownListFor(x => x.PadresId,Model.Padres,"")
-                </div>
-
                 <div class="Botones">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span>Nuevo</button>
                     <button class="btn btn-success"><span class="glyphicon glyphicon-list-alt"></span> Listar</button>
                     <button class="btn btn-success"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
                     <button type="reset" class="btn btn-warning"><span class="glyphicon glyphicon-refresh"></span> Cancelar</button>
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Borrar</button>
                     <a href="~/Hijos/index" class="btn btn-info"><span class="glyphicon glyphicon-off"></span> Salir</a>
                 </div>
 
@@ -60,3 +53,4 @@
         </section>
     </main>
 </body>
+

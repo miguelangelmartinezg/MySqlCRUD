@@ -3,6 +3,8 @@ using MySqlCRUD.Models;
 using MySqlCRUD.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +16,7 @@ namespace MySqlCRUD.Controllers
         private readonly int _RegistrosPorPagina = 10;
         private List<hijos> _Datos;
         private PaginadorGenerico<hijos> _PaginadorDatos;
-        LlenaCombos oLlenaCombos = new LlenaCombos();
+        LlenaCombos2 oLlenaCombos = new LlenaCombos2();
         // GET: Hijos
         public ActionResult Index(string buscar, int pagina = 1)
         {
@@ -86,21 +88,22 @@ namespace MySqlCRUD.Controllers
         {
             HijosViewModels modelo = new HijosViewModels
             {
-                //Padres = oLlenaCombos.GetComboPadres()
+                Padres = oLlenaCombos.GetComboPadres()
                 
             };
-
+            //ViewBag.Itms = oLlenaCombos.GetComboPadres();
 
             return View(modelo);
         }
 
         [HttpPost]
-        public ActionResult Nuevo(HijosModels model)
+        public ActionResult Nuevo(HijosViewModels model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
+
                     using (crudEntities1 db = new crudEntities1())
                     {
                         var oHijo = new hijos();
@@ -109,26 +112,53 @@ namespace MySqlCRUD.Controllers
                         oHijo.direccion = model.Direccion;
                         oHijo.edad = model.Edad;
                         oHijo.fechaNac = model.Fechanac;
-                        oHijo.idhijos = model.Idhijos;
-                        oHijo.idmitabla = model.Idmitabla;
+                        //oHijo.idhijos = model.Idhijos;
+                        oHijo.idmitabla = model.PadresId;
                         oHijo.sexo = model.Sexo;
-
+                        
                         db.hijos.Add(oHijo);
                         db.SaveChanges();
 
-                        return Redirect("~/Hijos/Nuevo");
+                        return Redirect("~/Hijos/Index");
 
 
                     }
+
+
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                    }
+                }
+                //catch (Exception exception)
+                //{
+                //    ModelState.AddModelError(string.Empty, exception.Message);
+                //}
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
                 }
             }
-            catch (Exception)
-            {
+            model.Padres = oLlenaCombos.GetComboPadres();
+            return View(model);
 
-                throw;
-            }
-
-            return View();
         }
     }
 }
