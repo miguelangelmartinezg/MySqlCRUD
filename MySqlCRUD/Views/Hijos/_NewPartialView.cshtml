@@ -3,18 +3,53 @@
 @model MySqlCRUD.Models.ViewModels.HijosViewModels
 
 
-@Styles.Render("~/Content/MisEstilos.css")
-<body>
-    <h1>Formulario de Registro</h1>
-    <form action ="Nuevo" method="post" class="contenedor">
-        <div class="contenedor-inputs">
-            <input type="text" name="Nombre" placeholder="Nombre" class="input-48" />
-            <input type="text" name="Apellido" placeholder="Apellidos" class="input-48" />
-            <input type="text" name="Direccion" placeholder="Direccion" class="input-100" />
-            <input type="datetime" name="Fechanac" placeholder="Fecha Nacimiento" class="linea-1" />
-            <input type="number" name="Edad" placeholder="Edad" class="linea-1" />
-            <select name="Sexo" class="input-48"><option>Masculino</option><option>Femenino</option></select>
+@Styles.Render("~/Content/EstiloForm.css")
+<body >
+    <main>
+        <section>
+            <h1>
+                Nuevo Registro
+            </h1>
+            <form action="Nuevo" method="post" class="Form-Contenedor">
+                
+                    <div class="Campos">
+                        <label>Nombre</label>
+                        <input type="text" name="Nombre" class="input-48" />
+                    </div>
+                    <div class="Campos">
+                        <label>Apellidos</label>
+                        <input type="text" name="Apellido" class="input-48" />
+                    </div>
+                    <div class="Campos">
+                        <label>Dirección</label>
+                        <input type="text" name="Direccion" class="input-100" />
+                    </div>
+                    <div class="Campos">
+                        <label>Fecha Nacimiento</label>
+                        <input type="datetime" name="Fechanac" class="Fechas" />
+                    </div>
+                    <div class="Campos">
+                        <label>Edad</label>
+                        <input type="number" name="Edad" class="Numeros3D" />
+                    </div>
 
-        </div>
-    </form>
+                    <div class="Campos">
+                        <label>Sexo</label>
+                        <select name="Sexo"><option>Masculino</option><option>Femenino</option></select>
+                    </div>
+
+                    <div class="Botones">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span>Nuevo</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-list-alt"></span> Listar</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Cancelar</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Borrar</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-off"></span> Salir</button>
+
+                    </div>
+
+            </form>
+        </section>
+    </main>
 </body>

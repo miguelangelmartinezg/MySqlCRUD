@@ -238,11 +238,19 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\EstiloForm.css" />
     <Content Include="Content\MisEstilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\carpeta.png" />
+    <Content Include="Images\disquete.png" />
+    <Content Include="Images\documento.png" />
+    <Content Include="Images\imprimir.png" />
+    <Content Include="Images\intercambiar.png" />
+    <Content Include="Images\lista-de-verificacion.png" />
+    <Content Include="Images\salida.png" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DB.edmx</DependentUpon>
