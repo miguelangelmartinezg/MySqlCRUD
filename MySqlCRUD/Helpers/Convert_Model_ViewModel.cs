@@ -38,7 +38,7 @@ namespace MySqlCRUD.Helpers
 
             return new HijosViewModels
             {
-                Padres = oLlenaCombo.GetComboPadres(),
+                //Padres = oLlenaCombo.GetComboPadres(),
                 Apellidos = oHijos.Apellidos,
                 Direccion = oHijos.Direccion,
                 Edad = oHijos.Edad,
