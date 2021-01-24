@@ -16,7 +16,7 @@
 
     <div class="text-right form-inline">
 
-        <form method="get" action=@Url.Action("IndexBusqueda", "MiTabla" )>
+        <form method="get" action=@Url.Action("Index", "Hijos" )>
             <div class="panel panel-default">
                 <div class="panel-heading" style="font:bold 12px"><b>Busqueda Rapida </b></div>
 
@@ -67,7 +67,7 @@
                             <td>@item.edad</td>
                             <td>@item.mitabla.nombre</td>
                             <td>
-                                <a class="btn btn-warning" href="~/Mitabla/Edit/@item.idhijos"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a class="btn btn-warning" href="~/Hijos/Edit/@item.idhijos"><i class="glyphicon glyphicon-pencil"></i></a>
                                 <button data-id="@item.idhijos" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
 
                             </td>

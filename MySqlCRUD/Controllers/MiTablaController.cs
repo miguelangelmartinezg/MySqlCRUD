@@ -141,7 +141,7 @@ namespace MySqlCRUD.Controllers
                 }
                 model.Correo = oDatos.correo;
                 model.Nombre = oDatos.nombre;
-                model.Fecha_Nacimiento = Convert.ToDateTime(oDatos.fecha_nacimiento.ToString("yyyy-mm-dd"));
+                //model.Fecha_Nacimiento = Convert.ToDateTime(oDatos.fecha_nacimiento.ToString("yyyy-mm-dd"));
                 model.Id = oDatos.id;
 
                 

@@ -13,6 +13,7 @@ section {
     box-sizing: border-box; /*Para crear las lineas del borde*/
     border: ridge; /*Para darle el stilo a las lineas del borde*/
     margin: auto;
+    min-width: 700px;
 }
 
 h1 {
@@ -56,7 +57,7 @@ form {
     }
 
     .Campos input {
-        font-size: 1.5rem;
+         font-size: 1.5rem;
         height: 3rem;
         padding-left: 0.5rem;
         border: 2px solid #696969;
@@ -97,13 +98,12 @@ form {
 .Numeros3D {
     width: 15%;
 }
-.DropDown {
-    font-size: 1.1rem;
-    height: 2.6rem;
+ .Campos DropDown {
+    font-size: 1.5rem;
+    height: 3rem;
     padding-left: 0.5rem;
     border: 2px solid #696969;
     border-radius: 5px;
-    width: 30px;
 }
 
 

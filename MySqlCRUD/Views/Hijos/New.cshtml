@@ -1,13 +1,9 @@
 ﻿@model MySqlCRUD.Models.ViewModels.HijosViewModels
-    @using MySqlCRUD.Enums
 @{
-    ViewBag.Title = "Nuevo Registro";
+    ViewBag.Title = "New";
 }
 
-@*<h2>@ViewBag.Title</h2>*@
-<link rel="stylesheet" href="MisEstilos.css" />
-@Styles.Render("~/Content/EstiloForm.css")
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<h2>New</h2>
 <body>
     <main>
         <section>
@@ -16,34 +12,34 @@
             </h1>
             <form action="Nuevo" method="post" class="Form-Contenedor">
 
-                <div class="Campos">
+                <div class="Campo">
                     <label>Nombre</label>
-                    <input type="text" name="Nombre" class="input-48" />
+                    <input type="text" name="Nombre" />
                 </div>
-                <div class="Campos">
+                <div class="Campo">
                     <label>Apellidos</label>
-                    <input type="text" name="Apellidos" class="input-48" />
+                    <input type="text" name="Apellidos" />
                 </div>
-                <div class="Campos">
+                <div class="textbox">
                     <label>Dirección</label>
-                    <input type="text" name="Direccion" class="input-100" />
+                    <textarea></textarea>
                 </div>
-                <div class="Campos">
+                <div class="Campo">
                     <label>Fecha Nacimiento</label>
-                    <input type="date" name="Fechanac" class="Fechas" />
+                    <input type="date" name="Fechanac" />
                 </div>
-                <div class="Campos">
+                <div class="Campo">
                     <label>Edad</label>
-                    <input type="number" name="Edad" class="Numeros3D" />
+                    <input type="number" name="Edad" />
                 </div>
 
-                <div class="Campos">
-                   
+                <div class="Campo">
+
                     <label>Sexo</label>
                     <select name="Sexo"><option>Masculino</option><option>Femenino</option></select>
                 </div>
 
-                <div class="Campos">
+                <div class="Campo">
                     <label>Padres</label>
                     @Html.DropDownListFor(x => x.PadresId, Model.Padres, "")
                 </div>
