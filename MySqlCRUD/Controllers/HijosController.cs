@@ -3,6 +3,9 @@ using MySqlCRUD.Models;
 using MySqlCRUD.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,23 +17,10 @@ namespace MySqlCRUD.Controllers
         private readonly int _RegistrosPorPagina = 10;
         private List<hijos> _Datos;
         private PaginadorGenerico<hijos> _PaginadorDatos;
-        LlenaCombos oLlenaCombos = new LlenaCombos();
+        LlenaCombos2 oLlenaCombos = new LlenaCombos2();
         // GET: Hijos
         public ActionResult Index(string buscar, int pagina = 1)
         {
-            //List<MitablaViewModel> oList = null;
-            //using (crudEntities1 DB = new crudEntities1())
-            //{
-            //    oList = (from d in DB.mitabla
-            //             select new MitablaViewModel
-            //             {
-            //                 Id = DB.id,
-            //                 Nombre = DB.nombre
-
-            //             });
-
-
-            //}
             int _TotalRegistros = 0;
             int _TotalPaginas = 0;
 
@@ -38,7 +28,8 @@ namespace MySqlCRUD.Controllers
             using (crudEntities1 DB = new crudEntities1())
             {
                 // Recuperamos el 'DbSet' completo
-                _Datos = DB.hijos.ToList();
+                _Datos = DB.hijos.Include(p => p.mitabla)//Incluyo la tabla miTabla para que traiga los datos del padre realacionado
+                    .ToList();
 
                 // Filtramos el resultado por el 'texto de búqueda'
                 if (!string.IsNullOrEmpty(buscar))
@@ -86,21 +77,22 @@ namespace MySqlCRUD.Controllers
         {
             HijosViewModels modelo = new HijosViewModels
             {
-                //Padres = oLlenaCombos.GetComboPadres()
+                Padres = oLlenaCombos.GetComboPadres()
                 
             };
-
+            //ViewBag.Itms = oLlenaCombos.GetComboPadres();
 
             return View(modelo);
         }
 
         [HttpPost]
-        public ActionResult Nuevo(HijosModels model)
+        public ActionResult Nuevo(HijosViewModels model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
+
                     using (crudEntities1 db = new crudEntities1())
                     {
                         var oHijo = new hijos();
@@ -109,26 +101,153 @@ namespace MySqlCRUD.Controllers
                         oHijo.direccion = model.Direccion;
                         oHijo.edad = model.Edad;
                         oHijo.fechaNac = model.Fechanac;
-                        oHijo.idhijos = model.Idhijos;
-                        oHijo.idmitabla = model.Idmitabla;
+                        //oHijo.idhijos = model.Idhijos;
+                        oHijo.idmitabla = model.PadresId;
                         oHijo.sexo = model.Sexo;
+                        
+                        db.hijos.Add(oHijo);
+                        db.SaveChanges();
+
+                        return Redirect("~/Hijos/Index");
+
+
+                    }
+
+
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                    }
+                }
+                //catch (Exception exception)
+                //{
+                //    ModelState.AddModelError(string.Empty, exception.Message);
+                //}
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+            }
+            model.Padres = oLlenaCombos.GetComboPadres();
+            return View(model);
+
+        }
+        public ActionResult Edit(int id)
+        {
+            if (id == 0)
+            {
+                return HttpNotFound();
+            }
+            HijosViewModels model = new HijosViewModels ();
+            using (crudEntities1 DB = new crudEntities1())
+            {
+                var oDatos = DB.hijos.Find(id);
+                if (oDatos == null)
+                {
+                    return Redirect("~/Hijos/Index");
+                }
+                model.Padres = oLlenaCombos.GetComboPadres();
+                model.Idhijos = oDatos.idhijos;
+                model.Nombre = oDatos.nombre;
+                model.Apellidos = oDatos.apellidos;
+                model.Direccion = oDatos.direccion;
+                model.Fechanac = oDatos.fechaNac;
+                model.Edad = oDatos.edad;
+                model.Sexo = oDatos.sexo;
+                model.Idmitabla = oDatos.idmitabla;
+            }
+            //HijosViewModels model = new HijosViewModels
+            //{
+            //    mode
+            //}
+
+
+            return View(model);
+
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(HijosViewModels model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    using (crudEntities1 db = new crudEntities1())
+                    {
+                        var oHijo = db.hijos.Find(model.Idhijos);
+                        oHijo.nombre = model.Nombre;
+                        oHijo.apellidos = model.Apellidos;
+                        oHijo.direccion = model.Direccion;
+                        oHijo.edad = model.Edad;
+                        oHijo.fechaNac = model.Fechanac;
+                        //oHijo.idhijos = model.Idhijos;
+                        oHijo.idmitabla = model.PadresId;
+                        oHijo.sexo = model.Sexo;
+                        oHijo.idmitabla = model.Idmitabla;
 
                         db.hijos.Add(oHijo);
                         db.SaveChanges();
 
-                        return Redirect("~/Hijos/Nuevo");
+                        return Redirect("~/Hijos/Index");
 
 
                     }
+
+
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                    }
+                }
+                //catch (Exception exception)
+                //{
+                //    ModelState.AddModelError(string.Empty, exception.Message);
+                //}
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            return View();
+            model.Padres = oLlenaCombos.GetComboPadres();
+            return View(model);
         }
     }
 }

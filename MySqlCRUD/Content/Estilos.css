@@ -1,0 +1,29 @@
+﻿section {
+    padding: 3.5rem 0; /*El padding se usa para dar separacion arriba o a bajo, 
+                             esto es el borde de afuera, es decir, la separacion de un elemento y otro*/
+    background-color: #a7c5eb;/*para dar color de fondo*/
+}
+form {
+    display: flex; /* La Propiedad DISPLAY especifica el comportamiento de visualizacion.es una propiedad FLEX que indica la capacidad
+                      de un elemento flexible para alterar sus dimensiones y llenar el espacio disponible.*/
+    flex-wrap: wrap; /*La propiedad FLEX-WRAP especifica si los elementos flexibles deben ajustarse o no. WRAP Especifica
+                     que los elementos flexibles se envolverán si es necesario*/
+    justify-content: space-between; /*JUSTIFY-CONTENT alinea los elementos del contenedor flexible cuando los elementos no utilizan
+                             todo el espacio disponible en el eje principal (horizontalmente). SPACE-BETWEEN Los elementos tendrán
+                             espacio entre ellos*/
+    width: 100%; /*Especifica la anchura*/
+    padding: 0 1rem; /*para darle un margen arriba y abajo de 0 y en Izquierda y derecha 1rem*/
+    max-width: 1000px;
+    /*PARA QUE LOS ELEMENTOS QUE ESTEN DENTRO EN UN FORM O DIV ESTEN CENTREDOS SIEMPRE PODRIAMOS PONER LOS MAREGENES*/
+   margin-left: auto;
+   margin-right: auto;
+
+}
+/*CADA CAMPO,(Label y Textbox) DE NUESTRO FORMULARIO LO ENVOLVEREMOS EN UN DIV Y A DICHO DIV LE PONDREMOS UN NOMBRE DE CLASE,*/
+/* PARA AL DARLE ESTILO AL DIV LO TOMEN AMBOS EN CONJUNTO*/
+.Campo {
+    display: flex; /*Para hacer los Label y TextBox (u Otro Control) Flexibles como Nuestro Formulario*/
+    flex-direction: column; /*Para visualizar nuestros Label y Textbox (u Otro Control) en Columnas, es decir, Uno arriba y otro abajo*/
+    width: 14rem; /*Para darle una Anchura al Textbox (u Otro Control)*/
+    margin: 0.5rem 0.5rem /*para darle un Margen arriba/abajo - Izquierda/Derecha*/
+}

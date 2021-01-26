@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="Helpers\Convert_Model_ViewModel.cs" />
     <Compile Include="Helpers\LlenaCombos.cs" />
+    <Compile Include="Helpers\LlenaCombos2.cs" />
     <Compile Include="Helpers\MyHelpers.cs" />
     <Compile Include="Models\DB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -239,6 +240,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\EstiloForm.css" />
+    <Content Include="Content\Estilos.css" />
     <Content Include="Content\MisEstilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -329,6 +331,11 @@
     <Content Include="Views\Hijos\_AddUpD.cshtml" />
     <Content Include="Views\Hijos\Nuevo.cshtml" />
     <Content Include="Views\Hijos\_NewPartialView.cshtml" />
+    <Content Include="Views\Shared\_Botones.cshtml" />
+    <Content Include="Views\Hijos\Nuevo2.cshtml" />
+    <Content Include="Views\Hijos\Edit.cshtml" />
+    <Content Include="Views\Hijos\Formulario.cshtml" />
+    <Content Include="Views\Hijos\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

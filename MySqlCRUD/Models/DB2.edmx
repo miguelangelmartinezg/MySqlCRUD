@@ -16,7 +16,7 @@
           <Property Name="idmitabla" Type="int" Nullable="false" />
           <Property Name="direccion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="edad" Type="int" Nullable="false" />
-          <Property Name="sexo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="11" Nullable="false" />
         </EntityType>
         <EntityType Name="mitabla">
           <Key>
@@ -82,7 +82,7 @@
           <Property Name="idmitabla" Type="Int32" Nullable="false" />
           <Property Name="direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="edad" Type="Int32" Nullable="false" />
-          <Property Name="sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="mitabla" Relationship="crudModel1.Fk_Mistablas" FromRole="hijos" ToRole="mitabla" />
         </EntityType>
         <Association Name="Fk_Mistablas">

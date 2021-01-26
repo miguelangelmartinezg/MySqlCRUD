@@ -13,6 +13,7 @@ section {
     box-sizing: border-box; /*Para crear las lineas del borde*/
     border: ridge; /*Para darle el stilo a las lineas del borde*/
     margin: auto;
+    min-width: 700px;
 }
 
 h1 {
@@ -34,6 +35,7 @@ form {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
+    min-width: 700px;
     max-width: 1000px;
     /*margin-left: auto;
     margin-right: auto;*/
@@ -55,7 +57,7 @@ form {
     }
 
     .Campos input {
-        font-size: 1.5rem;
+         font-size: 1.5rem;
         height: 3rem;
         padding-left: 0.5rem;
         border: 2px solid #696969;
@@ -76,6 +78,7 @@ form {
 .Botones button{
     background: #808080;
     width:100px;
+
    
     
 }
@@ -85,7 +88,7 @@ form {
     padding-left: 0.5rem;
     border: 2px solid #696969;
     border-radius: 5px;
-    width: 30%;
+    width: 60%;
 }
 
 .Fechas {
@@ -94,6 +97,13 @@ form {
 
 .Numeros3D {
     width: 15%;
+}
+ .Campos DropDown {
+    font-size: 1.5rem;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border: 2px solid #696969;
+    border-radius: 5px;
 }
 
 
